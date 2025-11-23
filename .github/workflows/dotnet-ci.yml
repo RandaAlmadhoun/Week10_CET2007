@@ -19,16 +19,21 @@ jobs:
           pwd
           dir
 
+      # Optional: you can actually remove this if you only use msbuild/vstest,
+      # but it's fine to leave it.
       - name: Setup .NET SDK
-        uses: actions/setup-dotnet@v4
+      uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '8.0.x' # or whatever you need for tools
+          dotnet-version: '8.0.x'
 
-      - name: Restore
-        run: dotnet restore ./Week10_CET2007.sln
+      # 🔹 IMPORTANT: restore NuGet packages for packages.config projects
+      - name: Restore NuGet packages
+        run: nuget restore Week10_CET2007.sln
 
+      # Build the solution (full framework projects are fine here)
       - name: Build
-        run: dotnet build ./Week10_CET2007.sln --configuration Release
+        run: dotnet build Week10_CET2007.sln --configuration Release
 
+      # Run tests – now that MSTest.TestAdapter is restored, this should work
       - name: Test
-        run: dotnet test ./Week10_CET2007.sln --configuration Release --no-build
+        run: dotnet test Week10_CET2007.sln --configuration Release --no-build
