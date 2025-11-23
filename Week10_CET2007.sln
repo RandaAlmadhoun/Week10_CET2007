@@ -5,7 +5,7 @@ VisualStudioVersion = 17.7.34221.43
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Week10_CET2007", "Week10_CET2007.csproj", "{21DF0693-6CD2-4610-A3C9-EAA164FF59CC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderServiceIntegrationTests", "..\OrderServiceIntegrationTests\OrderServiceIntegrationTests.csproj", "{D650C3A9-9649-4086-A2F7-962A4AFDAE2F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderServiceIntegrationTests", "OrderServiceIntegrationTests\OrderServiceIntegrationTests.csproj", "{D650C3A9-9649-4086-A2F7-962A4AFDAE2F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
