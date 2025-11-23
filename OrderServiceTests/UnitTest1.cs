@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using Week10_CET2007;
-namespace OrderServiceIntegrationTests
+namespace OrderServiceTests
 {
     [TestClass]
     public class OrderServiceIntegrationTests
@@ -23,7 +23,6 @@ namespace OrderServiceIntegrationTests
             Assert.IsTrue(payment.WasCharged);
             Assert.AreEqual(100, payment.LastAmount);
         }
-
         // if the quantity check in placeorder is commented the following method will fail (TDD )
 
         [TestMethod]
@@ -37,6 +36,4 @@ namespace OrderServiceIntegrationTests
                 service.PlaceOrder("P001", 0, "4111", 50));
         }
     }
-
-    
 }
