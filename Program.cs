@@ -33,7 +33,7 @@ namespace Week10_CET2007
             //comment this part when testing TDD to make it fail 
             //if (quantity <= 0)
             //    throw new ArgumentOutOfRangeException(nameof(quantity));
-
+             
             if (!_inventory.HasStock(productId, quantity))
                 throw new InvalidOperationException("Not enough stock.");
 
