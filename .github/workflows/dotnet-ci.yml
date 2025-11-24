@@ -23,5 +23,4 @@ jobs:
         run: msbuild Week10_CET2007.sln /p:Configuration=Release
 
       - name: Test
-        run: |
-          "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\Extensions\TestPlatform\vstest.console.exe" "OrderServiceTests\bin\Release\OrderServiceTests.dll"
+        run: & "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\Extensions\TestPlatform\vstest.console.exe" "OrderServiceTests\bin\Release\OrderServiceTests.dll"
