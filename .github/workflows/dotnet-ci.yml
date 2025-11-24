@@ -1,4 +1,4 @@
-name: .NET Build
+name: .NET Framework Tests
 
 on:
   push:
@@ -11,24 +11,18 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: List files
-        run: |
-          pwd
-          dir
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2
 
-      - name: Setup .NET SDK
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: '8.0.x'
-
-      - name: Restore NuGet packages
+      - name: Restore NuGet
         run: nuget restore Week10_CET2007.sln
 
       - name: Build
-        run: dotnet build Week10_CET2007.sln --configuration Release
+        run: msbuild Week10_CET2007.sln /p:Configuration=Release
 
       - name: Test
-        run: dotnet test Week10_CET2007.sln --configuration Release --no-build
+        run: |
+          "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\Extensions\TestPlatform\vstest.console.exe" ^
+            "OrderServiceTests\bin\Release\OrderServiceTests.dll"
