@@ -1,4 +1,4 @@
-name: .NET Framework Tests
+name: .NET Build
 
 on:
   push:
@@ -11,16 +11,23 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: List files
+        run: |
+          pwd
+          dir
 
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v2
 
-      - name: Restore NuGet
+      - name: Restore NuGet packages
         run: nuget restore Week10_CET2007.sln
 
       - name: Build
         run: msbuild Week10_CET2007.sln /p:Configuration=Release
 
       - name: Test
-        run: & "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\Extensions\TestPlatform\vstest.console.exe" "OrderServiceTests\bin\Release\OrderServiceTests.dll"
+        run: |
+          & "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\Extensions\TestPlatform\vstest.console.exe" "OrderServiceTests\bin\Release\OrderServiceTests.dll"
