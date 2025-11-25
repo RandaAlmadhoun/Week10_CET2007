@@ -110,6 +110,7 @@ namespace Week10_CET2007
     {
         static void Main(string[] args)
         {
+            Console.ReadKey();
             // you can add the scenario or order
             // of instructions that you like 
         }
