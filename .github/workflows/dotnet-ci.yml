@@ -30,8 +30,5 @@ jobs:
 
       - name: Test
         run: |
-          $vstest = Get-ChildItem "${env:ProgramFiles(x86)}\Microsoft Visual Studio" -Filter vstest.console.exe -Recurse -ErrorAction SilentlyContinue | Select-Object -First 1
-
-          if (!$vstest) { throw "VSTest not found" }
-
-          & $vstest.FullName "OrderServiceTests\bin\Release\OrderServiceTests.dll"
+          $vstest = "C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\IDE\CommonExtensions\Microsoft\TestWindow\vstest.console.exe"
+          & $vstest "OrderServiceTests\bin\Release\OrderServiceTests.dll"
