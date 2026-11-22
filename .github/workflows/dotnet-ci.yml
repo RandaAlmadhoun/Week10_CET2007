@@ -29,4 +29,31 @@ jobs:
         run: msbuild Week10_CET2007.sln /p:Configuration=Release
 
       - name: Test
-        run: dotnet test OrderServiceTests/OrderServiceTests.csproj --configuration Release --logger "console;verbosity=normal"
+        run: |
+          $vswhere = "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe"
+
+          $vsPath = & $vswhere -latest -products '*' -property installationPath
+
+          if (!$vsPath) {
+              throw "Visual Studio installation not found."
+          }
+
+          $vstest = Join-Path $vsPath "Common7\IDE\CommonExtensions\Microsoft\TestWindow\vstest.console.exe"
+
+          if (!(Test-Path $vstest)) {
+              throw "VSTest executable not found: $vstest"
+          }
+
+          $testDll = "OrderServiceTests\bin\Release\OrderServiceTests.dll"
+
+          if (!(Test-Path $testDll)) {
+              throw "Test DLL not found: $testDll"
+          }
+
+          Write-Host "Running tests using: $vstest"
+
+          & $vstest $testDll
+
+          if ($LASTEXITCODE -ne 0) {
+              exit $LASTEXITCODE
+          }
