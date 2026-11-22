@@ -30,5 +30,7 @@ jobs:
 
       - name: Test
         run: |
-          $vstest = "C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\IDE\CommonExtensions\Microsoft\TestWindow\vstest.console.exe"
+          $vswhere = "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe"
+          $vstest = & $vswhere -latest -products '*' -find "**\vstest.console.exe" | Select-Object -First 1
+          if (!$vstest) { throw "VSTest not found" }
           & $vstest "OrderServiceTests\bin\Release\OrderServiceTests.dll"
