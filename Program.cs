@@ -43,7 +43,7 @@ namespace Week10_CET2007
             _payment.Charge(cardNumber, total);
         }
     }
-
+   
 
     public class InventoryService : IInventoryService
     {
