@@ -31,8 +31,8 @@ namespace Week10_CET2007
        public void PlaceOrder(string productId, int quantity, string cardNumber, double unitPrice)
        {
             //comment this part when testing TDD to make it fail 
-            if (quantity <= 0)
-                throw new ArgumentOutOfRangeException(nameof(quantity));
+            //if (quantity <= 0)
+            //    throw new ArgumentOutOfRangeException(nameof(quantity));
 
             if (!_inventory.HasStock(productId, quantity))
                 throw new InvalidOperationException("Not enough stock.");
@@ -54,7 +54,10 @@ namespace Week10_CET2007
         };
 
         public bool HasStock(string productId, int quantity)
-            => _stock.TryGetValue(productId, out var current) && current >= quantity;
+            => _stock.TryGetValue(productId, out int current) && current >= quantity;
+        //{ 
+        //    return _stock.TryGetValue(productId, out var current) && current >= quantity;
+        //}
 
         public void ReserveStock(string productId, int quantity)
         {
@@ -108,6 +111,7 @@ namespace Week10_CET2007
     }
     class Program
     {
+        
         static void Main(string[] args)
         {
             Console.ReadKey();
